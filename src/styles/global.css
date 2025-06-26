@@ -7,3 +7,79 @@ html {
 @theme {
   --font-sans: "Figtree Variable"
 }
+
+@layer base {
+  .tiptap h1 {
+    @apply text-3xl text-center font-semibold;
+  }
+  .tiptap h2 {
+    @apply text-2xl font-semibold;
+  }
+  .tiptap h3 {
+    @apply text-xl font-semibold;
+  }
+  .tiptap h4 {
+    @apply text-lg font-semibold;
+  }
+  .tiptap h5 {
+    @apply text-base font-semibold;
+  }
+  .tiptap h6 {
+    @apply text-sm;
+  }
+  .tiptap a {
+    @apply underline hover:text-blue-600 dark:hover:text-blue-400;
+  }
+  .tiptap hr {
+    @apply mx-auto my-4 h-1 w-48 rounded border-0 bg-zinc-100 dark:bg-zinc-700 md:my-10;
+  }
+  .tiptap blockquote {
+    @apply my-2 border-l-4 border-zinc-200 pl-4 dark:border-zinc-600;
+  }
+  .tiptap p {
+    @apply my-1;
+  }
+  .tiptap ul {
+    @apply list-inside list-disc;
+  }
+  .tiptap ul > p {
+    @apply my-0 inline;
+  }
+  .tiptap ol {
+    @apply list-inside list-decimal;
+  }
+  .tiptap ol > p {
+    @apply my-0 inline;
+  }
+  .tiptap li {
+    @apply my-2;
+  }
+  .tiptap li > p {
+    @apply my-0 inline;
+  }
+  .tiptap li[data-checked] {
+    @apply list-none flex items-center gap-2 my-1;
+  }
+  .tiptap li[data-checked] > div {
+    @apply inline;
+  }
+  .tiptap li[data-checked="true"] > div {
+    @apply line-through;
+  }
+  .tiptap li[data-checked] p {
+    @apply m-0 inline;
+  }
+  .tiptap li[data-checked] label {
+    @apply flex items-center;
+  }
+  .tiptap code {
+    @apply bg-zinc-100 dark:bg-zinc-700 px-1 py-0.5 rounded text-sm;
+  }
+  .tiptap pre {
+    @apply bg-zinc-100 dark:bg-zinc-700 p-4 rounded overflow-x-auto;
+  }
+  .tiptap p.is-editor-empty:first-child::before {
+    @apply text-zinc-400 dark:text-zinc-500 pointer-events-none float-left h-0 text-lg;
+    content: attr(data-placeholder);
+  }
+}
