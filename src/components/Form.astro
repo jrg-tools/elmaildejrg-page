@@ -1,0 +1,50 @@
+---
+import { emailSchema } from '@/lib/validator';
+
+function showMessage(text, type = 'info') {
+  const message = document.getElementById('message');
+  const classes = {
+    success: 'text-sm text-green-600 min-h-[20px]',
+    error: 'text-sm text-red-600 min-h-[20px]',
+    warning: 'text-sm text-yellow-600 min-h-[20px]',
+    info: 'text-sm text-blue-600 min-h-[20px]',
+    default: 'text-sm text-gray-600 dark:text-gray-400 min-h-[20px]',
+  };
+
+  message.textContent = text;
+  message.className = classes[type] || classes.default;
+}
+
+// Validate email with Zod
+function validateEmail(email) {
+  try {
+    emailSchema.parse({ email });
+    return { success: true };
+  } catch (error) {
+    return {
+      success: false,
+      message: error.errors[0]?.message || 'Invalid email',
+    };
+  }
+}
+---
+
+<form id="newsletter-form" class="flex flex-col gap-2">
+  <div class="flex flex-col sm:flex-row gap-2">
+    <input
+      id="email"
+      type="email"
+      required
+      placeholder="Introduce tu email"
+      class="flex-1 p-3 rounded-md focus:outline-none bg-white dark:bg-zinc-950 border-zinc-100 border-2 dark:border-zinc-900"
+    />
+    <button
+      type="submit"
+      class="p-3 bg-zinc-200/30 hover:bg-zinc-200/70 dark:bg-zinc-900 dark:hover:bg-zinc-950 text-black dark:text-white rounded-md font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer border-none"
+      id="submit-btn"
+    >
+      Subscribe
+    </button>
+  </div>
+  <p id="message" class="text-sm text-gray-600"></p>
+</form>

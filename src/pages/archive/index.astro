@@ -1,18 +1,12 @@
 ---
 import Layout from '@/layouts/Layout.astro';
-import { SignUp } from '@clerk/astro/components';
+
+export const prerender = false;
 ---
 
 <Layout>
   <main
     class="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none"
   >
-    <SignUp
-      appearance={{
-        layout: {
-          showOptionalFields: false,
-        },
-      }}
-    />
   </main>
 </Layout>

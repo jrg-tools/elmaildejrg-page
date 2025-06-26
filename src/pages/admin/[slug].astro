@@ -1,0 +1,14 @@
+---
+import Layout from '@/layouts/Layout.astro';
+
+export const prerender = false;
+
+const { slug } = Astro.params;
+---
+
+<Layout title={slug}>
+  <main
+    class="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none"
+  >
+  </main>
+</Layout>

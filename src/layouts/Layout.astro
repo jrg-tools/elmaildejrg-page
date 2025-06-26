@@ -1,0 +1,62 @@
+---
+import '@fontsource-variable/figtree';
+import Navbar from '@/components/Navbar.astro';
+import Footer from '@/components/Footer.astro';
+import PostHog from '@/components/Posthog.astro';
+import { DESCRIPTION, TITLE, BASE_URL } from '@/lib/constants';
+import '@/styles/global.css';
+
+interface Props {
+  description?: string;
+  title?: string;
+}
+
+const { description = DESCRIPTION, title = TITLE } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="bg-zinc-50 text-black dark:bg-zinc-950 dark:text-white">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={BASE_URL} />
+
+    <!-- SEO Indexing -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={BASE_URL} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={`${BASE_URL}/profile.webp`} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={BASE_URL} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={`${BASE_URL}/profile.webp`} />
+
+    <PostHog />
+  </head>
+  <body class="flex flex-col min-h-screen">
+    <Navbar />
+    <section class="flex-grow pt-16">
+      <slot />
+    </section>
+    <Footer />
+  </body>
+</html>

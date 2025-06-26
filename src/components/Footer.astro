@@ -1,0 +1,73 @@
+---
+import { SITE_MAP, SOCIALS, AUTHOR, YEAR_OF_CREATION } from '@/lib/constants';
+import Form from '@/components/Form.astro';
+
+const this_year = new Date().getFullYear();
+---
+
+<footer class="bg-zinc-100/20 dark:bg-zinc-900/30">
+  <div class="mx-auto w-full max-w-screen-xl p-4 px-6 py-6 lg:py-8">
+    <div class="flex flex-row flex-wrap gap-16 sm:gap-8 justify-center">
+      {
+        SOCIALS.length > 0 && (
+          <div>
+            <h2 class="mb-6 text-sm font-semibold uppercase">Sigueme en</h2>
+            <ul class="flex flex-col gap-2 font-medium text-zinc-600 dark:text-zinc-400">
+              {SOCIALS.map((item) => (
+                <li>
+                  <a
+                    href={item.url}
+                    class="hover:underline duration-300"
+                    target={item.target}
+                  >
+                    {item.name}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        )
+      }
+      <div>
+        <h2 class="mb-6 text-sm font-semibold uppercase">Site map</h2>
+        <ul
+          class="flex flex-col gap-2 font-medium text-zinc-600 dark:text-zinc-400"
+        >
+          {
+            SITE_MAP.map((item) => (
+              <li>
+                <a href={item.url} class="hover:underline duration-300">
+                  {item.name}
+                </a>
+              </li>
+            ))
+          }
+          <!-- add li a with /admin link if user is admin -->
+          {
+            Astro.props.isAdmin && (
+              <li>
+                <a href="/admin" class="hover:underline duration-300">
+                  Admin
+                </a>
+              </li>
+            )
+          }
+        </ul>
+      </div>
+    </div>
+    <hr
+      class="my-6 border-zinc-200/60 dark:border-zinc-800/60 sm:mx-auto lg:my-8"
+    />
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-zinc-300 dark:text-zinc-700 sm:text-center">
+        &copy;
+        {' '}
+        {AUTHOR}
+        {' '}
+        {YEAR_OF_CREATION < this_year && `${YEAR_OF_CREATION} - `}
+        {this_year}
+        &nbsp;
+      </span>
+    </div>
+  </div>
+</footer>
