@@ -1,47 +1,35 @@
-# Astro Starter Kit: Minimal
+# El Mail de JRG
+
+> [!WARNING]
+> Set up the repository with the proper hooks. Run `pre-commit install` in the root directory of the repository.
+
+Personal newsletter for JRG. No spam, no ads, no tracking just personal updates and thoughts.
+
+**Stack:**
+
+- **Authentication:** Clerk
+- **Frontend:** Astro + React islands
+- **Admin UI:** EditorJS
+- **Backend:** Hono
+- **Database:** Turso
+- **Deployment:** Vercel (frontend) + Cloudflare Workers (backend)
+
+## Local development
 
 ```sh
-pnpm create astro@latest -- --template minimal
+$ pnpm i
+$ pnpm dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+### Environment variables
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Copy the `.env.sample` file to `.env` and fill in the required environment variables.
 
-## 🚀 Project Structure
+Keep in mind all environment variables with a prefix of `PUBLIC_` will be exposed to the client-side code.
 
-Inside of your Astro project, you'll see the following folders and files:
+There is a component in `src/components/core/Posthog.astro` that initializes PostHog for analytics. If you want to disable it, set the `PUBLIC_POSTHOG_KEY` environment variable to an empty string.
 
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+## 🚀 Deployment
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
-
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+We have a CI/CD pipeline set up with Vercel.
+The deployment is triggered automatically on **pushes to the main branch**.
