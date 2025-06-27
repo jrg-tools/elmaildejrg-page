@@ -1,9 +1,5 @@
-import { z } from 'zod';
+import * as z from 'zod/v4';
 
 export const emailSchema = z.object({
-  email: z
-    .string()
-    .min(1, 'Email obligatorio')
-    .email('Email inválido')
-    .max(254, 'Email demasiado largo'),
+  email: z.email(),
 });

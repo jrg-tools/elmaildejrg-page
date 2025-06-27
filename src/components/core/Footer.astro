@@ -1,6 +1,6 @@
 ---
 import { SITE_MAP, SOCIALS, AUTHOR, YEAR_OF_CREATION } from '@/lib/constants';
-import Form from '@/components/Form.astro';
+import { NewsletterForm } from '@/components/Form';
 
 const this_year = new Date().getFullYear();
 ---
@@ -56,7 +56,7 @@ const this_year = new Date().getFullYear();
       </div>
       <div class="flex-1 max-w-md text-center sm:text-left">
         <h2 class="mb-6 text-sm font-semibold uppercase">Registrate</h2>
-        <Form />
+        <NewsletterForm client:only />
       </div>
     </div>
     <hr
