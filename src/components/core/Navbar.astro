@@ -1,5 +1,6 @@
 ---
 import { SITE_MAP, TITLE } from '@/lib/constants';
+import { SignedIn, UserButton } from '@clerk/astro/components';
 
 interface Props {
   title?: string;
@@ -16,7 +17,7 @@ const { title = TITLE } = Astro.props;
       </h2>
     </a>
 
-    <nav class="items-center flex gap-2">
+    <nav class="items-center flex gap-4">
       {
         SITE_MAP.filter((item) => item.inNav).map((item) => {
           const isActive = Astro.url.pathname === item.url;
@@ -30,6 +31,9 @@ const { title = TITLE } = Astro.props;
           );
         })
       }
+      <SignedIn>
+        <UserButton />
+      </SignedIn>
     </nav>
   </div>
 </header>

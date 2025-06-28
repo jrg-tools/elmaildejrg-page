@@ -1,7 +1,7 @@
 import path from 'node:path';
 import react from '@astrojs/react';
 import vercel from '@astrojs/vercel';
-// import clerk from '@clerk/astro';
+import clerk from '@clerk/astro';
 import tailwindcss from '@tailwindcss/vite';
 
 // @ts-check
@@ -21,6 +21,5 @@ export default defineConfig({
       },
     },
   },
-  integrations: [react()],
+  integrations: [react(), clerk()],
 });
-
