@@ -1,9 +1,9 @@
+import Delimiter from '@editorjs/delimiter';
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
 import InlineCode from '@editorjs/inline-code';
 import EditorjsList from '@editorjs/list';
 import Marker from '@editorjs/marker';
-import Quote from '@editorjs/quote';
 import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
 import { ColorPickerWithoutSanitize } from 'editorjs-color-picker';
@@ -32,6 +32,7 @@ export function editorConfig(
         inlineToolbar: true,
         withHeadings: true,
       },
+      delimiter: Delimiter,
       header: {
         class: Header,
         config: {
@@ -42,11 +43,7 @@ export function editorConfig(
       ColorPicker: {
         class: ColorPickerWithoutSanitize,
       },
-      quote: {
-        class: Quote,
-        inlineToolbar: true,
-      },
-      List: {
+      list: {
         class: EditorjsList,
         inlineToolbar: true,
         config: {

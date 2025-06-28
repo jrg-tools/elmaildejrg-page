@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '@/lib/api';
 import { editorConfig } from '@/lib/editor';
+import { parsers } from '@/lib/parsers';
 import { slugSchema } from '@/lib/validator';
 
 export function Editor({
@@ -100,8 +101,9 @@ export function Editor({
 
     try {
       const editorData = await editorInstance.current.save();
-      const edjsParser = edjsHTML();
+      const edjsParser = edjsHTML(parsers);
       const htmlContent = edjsParser.parse(editorData);
+      // TODO: there are some blocks not supported like list, tables...
 
       const token = await getToken({ skipCache: true });
       const response = await api.post('/admin/newsletter', {
