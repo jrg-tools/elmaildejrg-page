@@ -1,26 +1,28 @@
 function listParser({ data }: any): string {
   const recursor = (items: any[], style: 'unordered' | 'ordered' | 'checklist'): string => {
-    const tag = style === 'unordered' ? 'ul' : style === 'ordered' ? 'ol' : 'ul'; // checklist still uses <ul>
+    const tag = style === 'ordered' ? 'ol' : 'ul';
 
-    const list = items.map((item) => {
-      if (!item || typeof item === 'string')
+    const listItems = items.map((item) => {
+      if (!item || typeof item === 'string') {
         return `<li>${item}</li>`;
-
-      const inner = item.items?.length ? recursor(item.items, style) : '';
+      }
 
       let content = '';
       if (style === 'checklist') {
         const checked = item.meta?.checked ? 'checked' : '';
-        content = `<label><input type="checkbox" disabled ${checked}> ${item.content || ''}</label>`;
+        content = `<label><input type="checkbox" disabled ${checked}><span>${item.content || ''}</span></label>`;
       }
       else {
         content = item.content || '';
       }
 
-      return `<li>${content}${inner}</li>`;
+      // Handle nested items - they should be placed inside the current <li>
+      const nestedList = item.items?.length ? recursor(item.items, style) : '';
+
+      return `<li>${content}${nestedList}</li>`;
     });
 
-    return `<${tag}>${list.join('')}</${tag}>`;
+    return `<${tag}>${listItems.join('')}</${tag}>`;
   };
 
   const style = data.style === 'checklist'
@@ -42,13 +44,20 @@ export const parsers = {
   quote: ({ data }: any) => `<blockquote>${data.text}</blockquote>`,
 
   image: ({ data }: any) => {
-    const { file, caption = '', withBorder, withBackground, stretched } = data;
+    const url = data?.file?.url;
+
+    if (!url) {
+      return '<figure></figure>';
+    }
+
+    const caption = data.caption || '';
     const classes = [
-      withBorder ? 'with-border' : '',
-      withBackground ? 'with-background' : '',
-      stretched ? 'stretched' : '',
+      data.withBorder ? 'with-border' : '',
+      data.withBackground ? 'with-background' : '',
+      data.stretched ? 'stretched' : '',
     ].filter(Boolean).join(' ');
-    return `<figure class="${classes}"><img src="${file.url}" alt="${caption}"/>${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
+
+    return `<figure${classes ? ` class="${classes}"` : ''}><img src="${url}" alt="${caption}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
   },
 
   embed: ({ data }: any) => {

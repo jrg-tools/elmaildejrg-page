@@ -9,6 +9,7 @@ html {
 }
 
 @layer base {
+  /* Headers */
   .codex-editor h1 {
     @apply text-3xl text-center font-semibold;
   }
@@ -27,94 +28,202 @@ html {
   .codex-editor h6 {
     @apply text-sm;
   }
+
+  /* Links */
   .codex-editor a {
     @apply underline hover:text-blue-600 dark:hover:text-blue-400;
   }
+
+  /* Horizontal Rules */
   .codex-editor hr {
     @apply mx-auto my-4 h-1 w-48 rounded border-0 bg-zinc-100 dark:bg-zinc-700 md:my-10;
   }
+
+  /* Blockquotes */
   .codex-editor blockquote {
     @apply my-2 border-l-4 border-zinc-200 pl-4 dark:border-zinc-600;
   }
+
+  /* Paragraphs */
   .codex-editor p {
     @apply my-1;
   }
+
+  /* Basic Lists */
   .codex-editor ul {
-    @apply list-inside list-disc;
-  }
-  .codex-editor ul > p {
-    @apply my-0 inline;
+    @apply list-inside list-disc my-2;
   }
   .codex-editor ol {
-    @apply list-inside list-decimal;
+    @apply list-inside list-decimal my-2;
   }
-  .codex-editor ol > p {
-    @apply my-0 inline;
-  }
+
+  /* List Items */
   .codex-editor li {
-    @apply my-2;
+    @apply my-1;
   }
   .codex-editor li > p {
     @apply my-0 inline;
   }
-  .codex-editor li[data-checked] {
-    @apply list-none flex items-center gap-2 my-1;
+
+  /* Nested Lists - Fix the indentation and styling */
+  .codex-editor ul ul,
+  .codex-editor ol ul,
+  .codex-editor ul ol,
+  .codex-editor ol ol {
+    @apply ml-6 mt-1 mb-1;
+    list-style-position: inside;
   }
-  .codex-editor li[data-checked] > div {
-    @apply inline;
+
+  /* Different bullet styles for nested unordered lists */
+  .codex-editor ul ul {
+    list-style-type: circle;
   }
-  .codex-editor li[data-checked="true"] > div {
-    @apply line-through;
+  .codex-editor ul ul ul {
+    list-style-type: square;
   }
-  .codex-editor li[data-checked] p {
-    @apply m-0 inline;
+  .codex-editor ul ul ul ul {
+    list-style-type: disc;
   }
-  .codex-editor li[data-checked] label {
-    @apply flex items-center;
+
+  /* Nested ordered lists with different number styles */
+  .codex-editor ol ol {
+    list-style-type: lower-alpha;
   }
+  .codex-editor ol ol ol {
+    list-style-type: lower-roman;
+  }
+  .codex-editor ol ol ol ol {
+    list-style-type: decimal;
+  }
+
+  /* Checklist Styles */
+  .codex-editor ul li label {
+    @apply flex items-center gap-2 cursor-pointer;
+  }
+  .codex-editor ul li input[type="checkbox"] {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600;
+  }
+  .codex-editor ul li input[type="checkbox"]:checked + span {
+    @apply line-through text-gray-500 dark:text-gray-400;
+  }
+
+  /* Remove default list styling for checklist items */
+  .codex-editor ul li:has(input[type="checkbox"]) {
+    @apply list-none;
+  }
+
+  /* Code Styling */
   .codex-editor code {
     @apply bg-zinc-100 dark:bg-zinc-700 px-1 py-0.5 rounded text-sm;
   }
   .codex-editor pre {
     @apply bg-zinc-100 dark:bg-zinc-700 p-4 rounded overflow-x-auto;
   }
+  .codex-editor pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /* Text Formatting */
+  .codex-editor mark {
+    @apply bg-yellow-200 dark:bg-yellow-900 px-1 rounded;
+  }
+  .codex-editor u {
+    @apply underline;
+  }
+  .codex-editor b,
+  .codex-editor strong {
+    @apply font-semibold;
+  }
+  .codex-editor i,
+  .codex-editor em {
+    @apply italic;
+  }
+
+  /* Tables */
+  .codex-editor table {
+    @apply w-full border-collapse border border-zinc-300 dark:border-zinc-600 my-4;
+  }
+  .codex-editor table th,
+  .codex-editor table td {
+    @apply border border-zinc-300 dark:border-zinc-600 px-3 py-2 text-left;
+  }
+  .codex-editor table th {
+    @apply bg-zinc-200/50 dark:bg-zinc-800 font-semibold;
+  }
+  .codex-editor table tbody tr:nth-child(even) {
+    @apply bg-zinc-50 dark:bg-zinc-900;
+  }
+
+  /* Images and Figures */
+  .codex-editor figure {
+    @apply my-4;
+  }
+  .codex-editor figure img {
+    @apply max-w-full h-auto rounded;
+  }
+  .codex-editor figure figcaption {
+    @apply text-sm text-zinc-600 dark:text-zinc-400 mt-2 text-center;
+  }
+  .codex-editor figure.with-border img {
+    @apply border border-zinc-300 dark:border-zinc-600;
+  }
+  .codex-editor figure.with-background {
+    @apply bg-zinc-100 dark:bg-zinc-700 p-4 rounded;
+  }
+  .codex-editor figure.stretched {
+    @apply w-full;
+  }
+  .codex-editor figure.stretched img {
+    @apply w-full;
+  }
+
+  /* Embeds */
+  .codex-editor iframe {
+    @apply w-full h-64 rounded my-4;
+  }
+
+  /* Editor Placeholder */
   .codex-editor p.is-editor-empty:first-child::before {
     @apply text-zinc-400 dark:text-zinc-500 pointer-events-none float-left h-0 text-lg;
     content: attr(data-placeholder);
   }
+
+  /* Editor Spacing */
   .codex-editor__redactor {
     padding-bottom: 0px !important;
   }
 
-    #header-nav {
-        animation: blur linear both;
-        animation-timeline: scroll();
-        animation-range: 0 500px;
-    }
+  /* Animations and Scrollbar */
+  #header-nav {
+    animation: blur linear both;
+    animation-timeline: scroll();
+    animation-range: 0 500px;
+  }
 
-    ::-webkit-scrollbar {
-        width: 8px;
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(var(--color-darker), 0.3);
+    backdrop-filter: blur(10px);
+    border-radius: 5px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(var(--color-darker), 0.5);
+  }
+
+  @keyframes blur {
+    to {
+      box-shadow:
+        0px 5px 50px -5px rgba(var(--color-darker), 0.1),
+        0px 0px 0 1px rgba(var(--color-darker), 0.3);
+      background: rgba(var(--color-darker), 0.3);
+      backdrop-filter: blur(10px);
     }
-    ::-webkit-scrollbar-track {
-        background: transparent;
-        backdrop-filter: blur(10px);
-        border-radius: 5px;
-    }
-    ::-webkit-scrollbar-thumb {
-        background: rgba(var(--color-darker), 0.3);
-        backdrop-filter: blur(10px);
-        border-radius: 5px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-        background: rgba(var(--color-darker), 0.5);
-    }
-    @keyframes blur {
-        to {
-            box-shadow:
-            0px 5px 50px -5px rgba(var(--color-darker), 0.1),
-            0px 0px 0 1px rgba(var(--color-darker), 0.3);
-            background: rgba(var(--color-darker), 0.3);
-            backdrop-filter: blur(10px);
-        }
-    }
+  }
 }
