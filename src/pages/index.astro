@@ -8,17 +8,19 @@ import { NewsletterForm } from '@/components/Form';
     class="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none"
   >
     <section class="mt-24 md:mt-32 mb-12">
-      <h1
-        class="text-4xl md:text-5xl font-bold tracking-tight mb-4 text-yellow-500 dark:text-yellow-400"
-      >
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
         El Mail de JRG
       </h1>
-      <p class="text-lg md:text-xl mb-8">
-        Un newsletter personal donde comparto mis proyectos, reflexiones y
-        novedades. Suscribite para recibirlo directamente en tu bandeja de
-        entrada.
+      <p class="text-lg md:text-xl mb-8 text-zinc-400 dark:text-zinc-500">
+        <span class="font-semibold">Una ventana directa a mi mundo.</span>
+        En esta newsletter comparto reflexiones personales, ideas sueltas, descubrimientos
+        que me inspiran y novedades de mis proyectos.
       </p>
       <NewsletterForm client:only />
+      <p class="text-sm mt-6 text-zinc-400 dark:text-zinc-500">
+        Suscríbete y recibe cada edición directamente en tu correo, sin
+        intermediarios ni algoritmos.
+      </p>
     </section>
   </main>
 </Layout>
