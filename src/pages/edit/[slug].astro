@@ -1,43 +1,46 @@
 ---
 import Layout from '@/layouts/Layout.astro';
 import { Editor } from '@/components/Editor';
+import { api } from '@/lib/api';
+import type { Newsletter } from '@/lib/types';
 
 const { slug } = Astro.params;
+let {
+  id,
+  content,
+  blocks,
+  isPublished,
+  updatedAt,
+  createdAt,
+}: Partial<Newsletter> = {};
 
-const content = `
-    <h2>
-      Hi there,
-    </h2>
-    <p>
-      this is a basic <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
-    </p>
-    <ul>
-      <li>That’s a bullet list with one …</li>
-      <li>
-        … or two list items.
-      </li>
-    </ul>
-    <p>
-      Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
-    </p>
-<pre><code class="language-css">body {
-  display: none;
-}</code></pre>
-    <p>
-      I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
-    </p>
-    <blockquote>
-      Wow, that’s amazing. Good work, boy! 👏
-      <br />
-      — Mom
-    </blockquote>
-  `;
+try {
+  const res: Newsletter = await api.get(`/newsletter/${slug}`);
+
+  id = res.id;
+  content = res.content;
+  blocks = res.blocks;
+  isPublished = res.isPublished;
+  updatedAt = res.updatedAt;
+  createdAt = res.createdAt;
+} catch (error) {
+  return new Response(null, { status: 404 });
+}
 ---
 
 <Layout title={slug}>
   <main
     class="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none"
   >
-    <Editor content={content} client:only />
+    <Editor
+      id={id}
+      content={content}
+      blocks={blocks}
+      isPublished={isPublished}
+      updatedAt={updatedAt}
+      createdAt={createdAt}
+      slug={slug}
+      client:only
+    />
   </main>
 </Layout>

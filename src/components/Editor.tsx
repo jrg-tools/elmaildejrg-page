@@ -1,3 +1,4 @@
+import type { Newsletter } from '@/lib/types';
 import { useAuth } from '@clerk/astro/react';
 import EditorJS from '@editorjs/editorjs';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -8,7 +9,14 @@ import { api } from '@/lib/api';
 import { editorConfig } from '@/lib/editor';
 import { slugSchema } from '@/lib/validator';
 
-export function Editor({ id, content }: { id?: string; content?: string }) {
+export function Editor({
+  slug = '',
+  id,
+  blocks,
+  isPublished = false,
+  // updatedAt,
+  // createdAt,
+}: Partial<Newsletter>) {
   const editRef = useRef<HTMLDivElement>(null);
   const editorInstance = useRef<EditorJS | null>(null);
   const { getToken } = useAuth();
@@ -27,7 +35,7 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
     resolver: zodResolver(slugSchema),
     mode: 'onChange',
     defaultValues: {
-      slug: '',
+      slug,
     },
   });
 
@@ -41,13 +49,13 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
       editorInstance.current.destroy();
     }
 
-    editorInstance.current = new EditorJS(editorConfig(editRef, getToken, content, id));
+    editorInstance.current = new EditorJS(editorConfig(editRef, getToken, blocks, id));
 
     return () => {
       editorInstance.current?.destroy();
       editorInstance.current = null;
     };
-  }, [id, content]);
+  }, [id, blocks]);
 
   // Validate slug on server when user unfocuses
   const validateSlugOnServer = async (slug: string) => {
@@ -59,8 +67,12 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
 
     try {
       const token = await getToken({ skipCache: true });
-      await api.post('/admin/validate-slug', { slug, id }, { token });
-      clearErrors('slug');
+      const { isValid } = await api.post('/admin/validate-slug', { slug, id }, { token });
+      if (isValid) {
+        clearErrors('slug');
+        return;
+      }
+      setSlugValidationError('Slug is already in use');
     }
     catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Slug is already in use';
@@ -102,7 +114,7 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
 
       // If successfully saved and not already in edit mode, redirect
       if (response && !id) {
-        window.location.href = `/edit/${response.id}`;
+        window.location.href = `/edit/${response.slug}`;
       }
     }
     catch (error) {
@@ -114,7 +126,7 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
     }
   };
 
-  const handleSave = () => saveContent(false);
+  const handleSave = () => saveContent(isPublished);
   const handlePublish = () => saveContent(true);
 
   const isSlugInvalid = !!errors.slug || !!slugValidationError;
@@ -133,8 +145,8 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
               isSlugInvalid
                 ? 'border-red-500'
                 : isValidatingSlug
-                ? 'border-blue-500'
-                : 'border-zinc-200 dark:border-zinc-800'
+                  ? 'border-blue-500'
+                  : 'border-zinc-200 dark:border-zinc-800'
             }`}
             onBlur={handleSlugBlur}
             disabled={isSaving || isPublishing}
@@ -148,14 +160,16 @@ export function Editor({ id, content }: { id?: string; content?: string }) {
         </div>
 
         <div className="flex gap-2">
-          <button
-            type="button"
-            onClick={handlePublish}
-            disabled={!canSaveOrPublish || isPublishing || isSaving}
-            className="px-4 py-2 bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 disabled:from-rose-300 disabled:to-red-300 text-white rounded-md font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer border-none text-sm"
-          >
-            {isPublishing ? 'Publicando...' : 'Publicar'}
-          </button>
+          {!isPublished && (
+            <button
+              type="button"
+              onClick={handlePublish}
+              disabled={!canSaveOrPublish || isPublishing || isSaving}
+              className="px-4 py-2 bg-gradient-to-r from-rose-500 to-red-500 hover:from-rose-600 hover:to-red-600 disabled:from-rose-300 disabled:to-red-300 text-white rounded-md font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer border-none text-sm"
+            >
+              {isPublishing ? 'Publicando...' : 'Publicar'}
+            </button>
+          )}
 
           <button
             type="button"

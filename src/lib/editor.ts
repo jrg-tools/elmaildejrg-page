@@ -11,13 +11,13 @@ import { api } from '@/lib/api';
 export function editorConfig(
   editRef: React.RefObject<HTMLDivElement | null>,
   getToken: (options?: { skipCache?: boolean }) => Promise<string | undefined>,
-  content?: string,
+  blocks?: string,
   id?: string,
 ) {
   return {
     holder: editRef.current,
     placeholder: 'Escribe tus ideas ...',
-    data: content ? JSON.parse(content) : undefined,
+    data: blocks,
     tools: {
       inlineCode: {
         class: InlineCode,
