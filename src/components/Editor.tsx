@@ -103,7 +103,6 @@ export function Editor({
       const editorData = await editorInstance.current.save();
       const edjsParser = edjsHTML(parsers);
       const htmlContent = edjsParser.parse(editorData);
-      // TODO: there are some blocks not supported like list, tables...
 
       const token = await getToken({ skipCache: true });
       const response = await api.post('/admin/newsletter', {

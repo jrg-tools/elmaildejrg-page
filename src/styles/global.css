@@ -125,7 +125,7 @@ html {
 
   /* Text Formatting */
   .codex-editor mark {
-    @apply bg-yellow-200 dark:bg-yellow-900 px-1 rounded;
+    @apply bg-yellow-200 px-1 rounded;
   }
   .codex-editor u {
     @apply underline;

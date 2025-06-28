@@ -51,13 +51,18 @@ export const parsers = {
     }
 
     const caption = data.caption || '';
-    const classes = [
-      data.withBorder ? 'with-border' : '',
-      data.withBackground ? 'with-background' : '',
-      data.stretched ? 'stretched' : '',
-    ].filter(Boolean).join(' ');
+    const classes = [];
 
-    return `<figure${classes ? ` class="${classes}"` : ''}><img src="${url}" alt="${caption}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
+    if (data.withBorder)
+      classes.push('with-border');
+    if (data.withBackground)
+      classes.push('with-background');
+    if (data.stretched)
+      classes.push('stretched');
+
+    const classAttr = classes.length > 0 ? ` class="${classes.join(' ')}"` : '';
+
+    return `<figure${classAttr}><img src="${url}" alt="${caption}" />${caption ? `<figcaption>${caption}</figcaption>` : ''}</figure>`;
   },
 
   embed: ({ data }: any) => {
