@@ -65,9 +65,9 @@ importers:
       editorjs-color-picker:
         specifier: ^1.0.8
         version: 1.0.8
-      editorjs-to-html:
-        specifier: ^1.0.4
-        version: 1.0.4
+      editorjs-html:
+        specifier: ^4.0.5
+        version: 4.0.5
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -1786,8 +1786,8 @@ packages:
   editorjs-color-picker@1.0.8:
     resolution: {integrity: sha512-7i2frBJI2laleaWGWS1kkyqnhzDFN1T7sh/PF0LlvBQ7zkgQRiElJBz179nGtRSyQVbX+phwgEH7PjgbtW6UTw==}
 
-  editorjs-to-html@1.0.4:
-    resolution: {integrity: sha512-0kMN4R2KtL2j89FiLonSx2s53y7SbdAMVAxkyH/bVT1ItfzFTLCdKWFPrXnxfR//bY6wQXJMhESIb5gmtEMx2A==}
+  editorjs-html@4.0.5:
+    resolution: {integrity: sha512-ImQYxB3fNCJcd+nJ+Vbne/6PxidO1cYByNpu9nBDStVabfjVrMW65BuR+IEZfOii8VKYH+CW/lYDb2GDlzZtDg==}
 
   electron-to-chromium@1.5.176:
     resolution: {integrity: sha512-2nDK9orkm7M9ZZkjO3PjbEd3VUulQLyg5T9O3enJdFvUg46Hzd4DUvTvAuEgbdHYXyFsiG4A5sO9IzToMH1cDg==}
@@ -5796,7 +5796,7 @@ snapshots:
       '@codexteam/icons': 0.3.2
       '@editorjs/editorjs': 2.30.6
 
-  editorjs-to-html@1.0.4: {}
+  editorjs-html@4.0.5: {}
 
   electron-to-chromium@1.5.176: {}
 

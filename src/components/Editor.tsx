@@ -2,7 +2,7 @@ import type { Newsletter } from '@/lib/types';
 import { useAuth } from '@clerk/astro/react';
 import EditorJS from '@editorjs/editorjs';
 import { zodResolver } from '@hookform/resolvers/zod';
-import edjsHTML from 'editorjs-to-html';
+import edjsHTML from 'editorjs-html';
 import { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { api } from '@/lib/api';
