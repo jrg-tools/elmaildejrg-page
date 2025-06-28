@@ -11,7 +11,7 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.0",
-    "@clerk/astro": "^2.9.2",
+    "@clerk/astro": "^2.10.0",
     "@floating-ui/react": "^0.27.12",
     "@fontsource-variable/figtree": "^5.2.8",
     "@hookform/resolvers": "^5.1.1",
