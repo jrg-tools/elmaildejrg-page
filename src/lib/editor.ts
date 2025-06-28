@@ -4,6 +4,7 @@ import InlineCode from '@editorjs/inline-code';
 import EditorjsList from '@editorjs/list';
 import Marker from '@editorjs/marker';
 import Quote from '@editorjs/quote';
+import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
 import { ColorPickerWithoutSanitize } from 'editorjs-color-picker';
 import { api } from '@/lib/api';
@@ -26,6 +27,11 @@ export function editorConfig(
         class: Marker,
       },
       underline: Underline,
+      table: {
+        class: Table,
+        inlineToolbar: true,
+        withHeadings: true,
+      },
       header: {
         class: Header,
         config: {

@@ -113,7 +113,7 @@ export function Editor({
       }, { token });
 
       // If successfully saved and not already in edit mode, redirect
-      if (response && !id) {
+      if (response && (!slug || response.slug !== slug)) {
         window.location.href = `/edit/${response.slug}`;
       }
     }
