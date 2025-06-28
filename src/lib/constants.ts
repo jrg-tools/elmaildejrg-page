@@ -26,4 +26,9 @@ export const SITE_MAP: {
     url: '/archive',
     inNav: true,
   },
+  {
+    name: 'ShortURL',
+    url: 'https://x.jrg.tools/dashboard',
+    target: '_blank',
+  },
 ];

@@ -36,7 +36,11 @@ const this_year = new Date().getFullYear();
           {
             SITE_MAP.map((item) => (
               <li>
-                <a href={item.url} class="hover:underline duration-300">
+                <a
+                  href={item.url}
+                  target={item.target}
+                  class="hover:underline duration-300"
+                >
                   {item.name}
                 </a>
               </li>
