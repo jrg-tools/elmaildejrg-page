@@ -3,17 +3,17 @@ import { API_URL } from '@/lib/env';
 interface ApiFetchOptions extends Omit<RequestInit, 'method' | 'body'> {
   token?: string;
   params?: Record<string, string>;
-  body?: any; // Will be JSON stringified automatically
+  body?: any; // Will be JSON stringified automatically unless it's FormData
+  isFormData?: boolean; // Explicitly indicate when sending FormData
 }
 
 async function apiFetch<T = any>(
   endpoint: string,
   options: ApiFetchOptions = {},
 ): Promise<T> {
-  const { token, params, body, ...fetchOptions } = options;
+  const { token, params, body, isFormData, ...fetchOptions } = options;
 
   const url = new URL(endpoint, API_URL);
-
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
@@ -23,17 +23,35 @@ async function apiFetch<T = any>(
   }
 
   const headers = new Headers(fetchOptions.headers || {});
-  headers.set('Content-Type', 'application/json');
+
+  // Don't set Content-Type for FormData - let browser set it with boundary
+  const isFormDataBody = body instanceof FormData || isFormData;
+
+  if (!isFormDataBody) {
+    headers.set('Content-Type', 'application/json');
+  }
+
   headers.set('Accept', 'application/json');
 
   if (token) {
     headers.set('Authorization', `Bearer ${token}`);
   }
 
+  // Prepare body based on type
+  let requestBody: any;
+  if (body) {
+    if (isFormDataBody) {
+      requestBody = body; // Use FormData as-is
+    }
+    else {
+      requestBody = JSON.stringify(body); // JSON stringify for regular requests
+    }
+  }
+
   const res = await fetch(url.toString(), {
     ...fetchOptions,
     headers,
-    body: body ? JSON.stringify(body) : undefined,
+    body: requestBody,
   });
 
   if (!res.ok) {
@@ -59,4 +77,16 @@ export const api = {
 
   delete: <T = any>(endpoint: string, options: Omit<ApiFetchOptions, 'method'> = {}) =>
     apiFetch<T>(endpoint, { ...options, method: 'DELETE' }),
+
+  uploadFile: <T = any>(
+    endpoint: string,
+    formData: FormData,
+    options: Omit<ApiFetchOptions, 'method' | 'body' | 'isFormData'> = {},
+  ) =>
+    apiFetch<T>(endpoint, {
+      ...options,
+      method: 'POST',
+      body: formData,
+      isFormData: true,
+    }),
 };

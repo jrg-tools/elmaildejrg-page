@@ -17,6 +17,30 @@ importers:
       '@clerk/astro':
         specifier: ^2.10.0
         version: 2.10.0(astro@5.10.1(@types/node@24.0.4)(jiti@2.4.2)(lightningcss@1.30.1)(rollup@4.44.1)(sass-embedded@1.89.2)(typescript@5.8.3)(yaml@2.8.0))(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
+      '@editorjs/editorjs':
+        specifier: ^2.30.8
+        version: 2.30.8
+      '@editorjs/header':
+        specifier: ^2.8.8
+        version: 2.8.8
+      '@editorjs/image':
+        specifier: ^2.10.2
+        version: 2.10.2
+      '@editorjs/inline-code':
+        specifier: ^1.5.2
+        version: 1.5.2
+      '@editorjs/list':
+        specifier: ^2.0.8
+        version: 2.0.8
+      '@editorjs/marker':
+        specifier: ^1.4.0
+        version: 1.4.0
+      '@editorjs/quote':
+        specifier: ^2.7.6
+        version: 2.7.6
+      '@editorjs/underline':
+        specifier: ^1.2.1
+        version: 1.2.1
       '@floating-ui/react':
         specifier: ^0.27.12
         version: 0.27.12(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -35,6 +59,12 @@ importers:
       canvas-confetti:
         specifier: ^1.9.3
         version: 1.9.3
+      editorjs-color-picker:
+        specifier: ^1.0.8
+        version: 1.0.8
+      editorjs-to-html:
+        specifier: ^1.0.4
+        version: 1.0.4
       react:
         specifier: ^19.1.0
         version: 19.1.0
@@ -309,6 +339,15 @@ packages:
     resolution: {integrity: sha512-Ps/8eQHCuv2bZYgTG3+4xgxlltoX91GNf+G5TG/DSSmECgR657qGoasOrLLcMMyE+OZiX57k51oH137Ohhggog==}
     engines: {node: '>=18.17.0'}
 
+  '@codexteam/icons@0.0.5':
+    resolution: {integrity: sha512-s6H2KXhLz2rgbMZSkRm8dsMJvyUNZsEjxobBEg9ztdrb1B2H3pEzY6iTwI4XUPJWJ3c3qRKwV4TrO3J5jUdoQA==}
+
+  '@codexteam/icons@0.3.2':
+    resolution: {integrity: sha512-P1ep2fHoy0tv4wx85eic+uee5plDnZQ1Qa6gDfv7eHPkCXorMtVqJhzMb75o1izogh6G7380PqmFDXV3bW3Pig==}
+
+  '@codexteam/icons@0.3.3':
+    resolution: {integrity: sha512-cp7mkZPgmBuSxigTm3Vb+DtVHYeX7qXfQd7o05vcLD8Ag5WvRlol2QSn5P10k0CDAJwmkH9nQGQLBycErS9lsQ==}
+
   '@dprint/formatter@0.3.0':
     resolution: {integrity: sha512-N9fxCxbaBOrDkteSOzaCqwWjso5iAe+WJPsHC021JfHNj2ThInPNEF13ORDKta3llq5D1TlclODCvOvipH7bWQ==}
 
@@ -317,6 +356,39 @@ packages:
 
   '@dprint/toml@0.6.4':
     resolution: {integrity: sha512-bZXIUjxr0LIuHWshZr/5mtUkOrnh0NKVZEF6ACojW5z7zkJu7s9sV2mMXm8XQDqN4cJzdHYUYzUyEGdfciaLJA==}
+
+  '@editorjs/dom@0.0.5':
+    resolution: {integrity: sha512-SZ78Gwpkp3EUhjBIp0lSojeQ35V9acF8SubJsMeOH/vlOUE40GOnvvwWZnF05lO7bIB0dOHhhJy4N7IIAWxP2w==}
+
+  '@editorjs/editorjs@2.30.6':
+    resolution: {integrity: sha512-6eQMc4Di3Hz9p4o+NGRgKaCeAF7eAk106m+bsDLc4eo94VGYO1M163OiGFdmanE+w503qTmXOzycWff5blEOAQ==}
+
+  '@editorjs/editorjs@2.30.8':
+    resolution: {integrity: sha512-ClFuxI1qZTfXPJTacQfsJtOUP6bKoIe6BQNdAvGsDTDVwMnZEzoaSOwvUpdZEE56xppVfQueNK/1MElV9SJKHg==}
+
+  '@editorjs/header@2.8.8':
+    resolution: {integrity: sha512-bsMSs34u2hoi0UBuRoc5EGWXIFzJiwYgkFUYQGVm63y5FU+s8zPBmVx5Ip2sw1xgs0fqfDROqmteMvvmbCy62w==}
+
+  '@editorjs/helpers@0.0.4':
+    resolution: {integrity: sha512-ieg3dzo2m1/ELze/RMNADiAiC5amXxIlVXoJ5vvXITOu/p/dPsrF+Oi3h5gBYvtGk9vg5LJUSG5YWU0tBUO1tw==}
+
+  '@editorjs/image@2.10.2':
+    resolution: {integrity: sha512-SU0nP9NhqwA7+Jlco/E7zjYjtRUrVGSOW8bsrrEnH8my588UW7mPGa1zwAHFs/UMB0x8LXKOb1iq40db+2iC6A==}
+
+  '@editorjs/inline-code@1.5.2':
+    resolution: {integrity: sha512-IpEvwMTP3q89T/6vTi3ACoSMOcTdywtMsci1w19+Z/lxQn/NVuVah++ro93wQ/1ZVTyCr+TPUCchxwzY1/xaMg==}
+
+  '@editorjs/list@2.0.8':
+    resolution: {integrity: sha512-/EJNvpeJYa1YDtYa85ug9R3sbDyI5ZlMHQ2bIh5S9iPa19qXe45jk6kgcew+jMNQq3j4NS4Q6YeeFbU1QkNMWw==}
+
+  '@editorjs/marker@1.4.0':
+    resolution: {integrity: sha512-5ipEXfL44jTTRzgNp/p/YjMO7jT08S5z4V8qA3FFJTfdhKgQyM3mvP1zpdYKw47ZZpVWMCncvk5Nto3BxihEtg==}
+
+  '@editorjs/quote@2.7.6':
+    resolution: {integrity: sha512-D01KUMSDj2r+6Z+xjDkQqI+y6URpeHCvj0+P4pah+GtkG040lWjFb2H4pgHFXuol2cbfyAoraYSw85fuPheCvw==}
+
+  '@editorjs/underline@1.2.1':
+    resolution: {integrity: sha512-LjJ01ia6Pj0Z/elifycp9+T1bQs0eXNnIcEYKOlk0sGHLy88DPcBOh9oz1i+uWarZ4AjGsvSMaptpWe+yQNsjQ==}
 
   '@emnapi/core@1.4.3':
     resolution: {integrity: sha512-4m62DuCE07lw01soJwPiBGC0nAww0Q+RY70VZ+n49yDIO13yyinhbWCeNnaob0lakDtWQzSdtNWzJeOJt2ma+g==}
@@ -1701,6 +1773,12 @@ packages:
 
   eastasianwidth@0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}
+
+  editorjs-color-picker@1.0.8:
+    resolution: {integrity: sha512-7i2frBJI2laleaWGWS1kkyqnhzDFN1T7sh/PF0LlvBQ7zkgQRiElJBz179nGtRSyQVbX+phwgEH7PjgbtW6UTw==}
+
+  editorjs-to-html@1.0.4:
+    resolution: {integrity: sha512-0kMN4R2KtL2j89FiLonSx2s53y7SbdAMVAxkyH/bVT1ItfzFTLCdKWFPrXnxfR//bY6wQXJMhESIb5gmtEMx2A==}
 
   electron-to-chromium@1.5.176:
     resolution: {integrity: sha512-2nDK9orkm7M9ZZkjO3PjbEd3VUulQLyg5T9O3enJdFvUg46Hzd4DUvTvAuEgbdHYXyFsiG4A5sO9IzToMH1cDg==}
@@ -4285,11 +4363,57 @@ snapshots:
     dependencies:
       csstype: 3.1.3
 
+  '@codexteam/icons@0.0.5': {}
+
+  '@codexteam/icons@0.3.2': {}
+
+  '@codexteam/icons@0.3.3': {}
+
   '@dprint/formatter@0.3.0': {}
 
   '@dprint/markdown@0.17.8': {}
 
   '@dprint/toml@0.6.4': {}
+
+  '@editorjs/dom@0.0.5':
+    dependencies:
+      '@editorjs/helpers': 0.0.4
+
+  '@editorjs/editorjs@2.30.6': {}
+
+  '@editorjs/editorjs@2.30.8': {}
+
+  '@editorjs/header@2.8.8':
+    dependencies:
+      '@codexteam/icons': 0.0.5
+      '@editorjs/editorjs': 2.30.8
+
+  '@editorjs/helpers@0.0.4': {}
+
+  '@editorjs/image@2.10.2':
+    dependencies:
+      '@codexteam/icons': 0.3.3
+
+  '@editorjs/inline-code@1.5.2':
+    dependencies:
+      '@codexteam/icons': 0.3.3
+
+  '@editorjs/list@2.0.8':
+    dependencies:
+      '@codexteam/icons': 0.3.3
+
+  '@editorjs/marker@1.4.0':
+    dependencies:
+      '@codexteam/icons': 0.0.5
+
+  '@editorjs/quote@2.7.6':
+    dependencies:
+      '@codexteam/icons': 0.3.3
+      '@editorjs/dom': 0.0.5
+
+  '@editorjs/underline@1.2.1':
+    dependencies:
+      '@codexteam/icons': 0.3.3
 
   '@emnapi/core@1.4.3':
     dependencies:
@@ -5651,6 +5775,13 @@ snapshots:
       gopd: 1.2.0
 
   eastasianwidth@0.2.0: {}
+
+  editorjs-color-picker@1.0.8:
+    dependencies:
+      '@codexteam/icons': 0.3.2
+      '@editorjs/editorjs': 2.30.6
+
+  editorjs-to-html@1.0.4: {}
 
   electron-to-chromium@1.5.176: {}
 
