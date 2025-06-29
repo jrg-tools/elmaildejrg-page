@@ -77,4 +77,6 @@ export const parsers = {
     }).join('');
     return `<table><tbody>${rows}</tbody></table>`;
   },
+
+  delimiter: () => `<hr />`,
 };

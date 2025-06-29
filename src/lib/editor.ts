@@ -4,6 +4,7 @@ import ImageTool from '@editorjs/image';
 import InlineCode from '@editorjs/inline-code';
 import EditorjsList from '@editorjs/list';
 import Marker from '@editorjs/marker';
+import Quote from '@editorjs/quote';
 import Table from '@editorjs/table';
 import Underline from '@editorjs/underline';
 import { ColorPickerWithoutSanitize } from 'editorjs-color-picker';
@@ -49,6 +50,10 @@ export function editorConfig(
         config: {
           defaultStyle: 'unordered',
         },
+      },
+      quote: {
+        class: Quote,
+        inlineToolbar: true,
       },
       image: {
         class: ImageTool,
