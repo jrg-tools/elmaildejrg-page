@@ -1,8 +1,8 @@
 import { API_URL } from '@/lib/env';
 
-interface ApiFetchOptions extends Omit<RequestInit, 'method' | 'body'> {
+export interface ApiFetchOptions extends Omit<RequestInit, 'method' | 'body'> {
   token?: string;
-  params?: Record<string, string>;
+  params?: Record<string, any>;
   body?: any; // Will be JSON stringified automatically unless it's FormData
   isFormData?: boolean; // Explicitly indicate when sending FormData
 }
