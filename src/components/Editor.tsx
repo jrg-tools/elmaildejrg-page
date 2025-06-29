@@ -180,6 +180,14 @@ export function Editor({
         </div>
 
         <div className="flex gap-2">
+          { id && (
+            <a
+              href={`/archive/${slug}`}
+              className="px-4 content-center justify-center cursor-pointer bg-zinc-200/50 hover:dark:bg-zinc-800 hover:bg-zinc-200/80 dark:bg-zinc-800/50 rounded-md font-medium transition-all border-none text-sm"
+            >
+              Ver
+            </a>
+          )}
           {!isPublished && (
             <button
               type="button"

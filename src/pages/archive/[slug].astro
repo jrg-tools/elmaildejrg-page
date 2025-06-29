@@ -1,5 +1,5 @@
 ---
-import { Archive } from '@/components/Archive';
+import { SignedIn } from '@clerk/astro/components';
 import Layout from '@/layouts/Layout.astro';
 import { api } from '@/lib/api';
 import type { Newsletter } from '@/lib/types';
@@ -35,6 +35,17 @@ try {
 <Layout title={slug}>
   <main
     class="max-w-screen-md px-4 mb-24 object-center m-auto text-left select-none codex-editor pt-4 md:pt-8"
-    set:html={content}
-  />
+  >
+    <SignedIn>
+      <div class="flex justify-end items-center w-full mb-4">
+        <a
+          href={`/edit/${slug}`}
+          class="px-4 py-2 content-center justify-center cursor-pointer bg-zinc-200/50 hover:dark:bg-zinc-800 hover:bg-zinc-200/80 dark:bg-zinc-800/50 rounded-md font-medium transition-all border-none text-sm no-underline hover:text-inherit"
+        >
+          Editar
+        </a>
+      </div>
+    </SignedIn>
+    <article set:html={content} />
+  </main>
 </Layout>
