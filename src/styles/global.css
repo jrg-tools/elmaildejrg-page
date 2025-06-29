@@ -11,22 +11,22 @@ html {
 @layer base {
   /* Headers */
   .codex-editor h1 {
-    @apply text-3xl text-center font-semibold;
+    @apply text-3xl text-center font-semibold mt-4 mb-2;
   }
   .codex-editor h2 {
-    @apply text-2xl font-semibold;
+    @apply text-2xl font-semibold mt-4 mb-2;
   }
   .codex-editor h3 {
-    @apply text-xl font-semibold;
+    @apply text-xl font-semibold mt-4 mb-2;
   }
   .codex-editor h4 {
-    @apply text-lg font-semibold;
+    @apply text-lg font-semibold mt-4 mb-2;
   }
   .codex-editor h5 {
-    @apply text-base font-semibold;
+    @apply text-base font-semibold mt-2 mb-1;
   }
   .codex-editor h6 {
-    @apply text-sm;
+    @apply text-sm mt-2 mb-1;
   }
 
   /* Links */
@@ -46,7 +46,7 @@ html {
 
   /* Paragraphs */
   .codex-editor p {
-    @apply my-1;
+    @apply my-1.5;
   }
 
   /* Basic Lists */
@@ -125,7 +125,7 @@ html {
 
   /* Text Formatting */
   .codex-editor mark {
-    @apply bg-yellow-200 px-1 rounded;
+    @apply bg-yellow-100/80 dark:bg-yellow-300/30 px-1 py-0.5 dark:text-white rounded-xs;
   }
   .codex-editor u {
     @apply underline;
