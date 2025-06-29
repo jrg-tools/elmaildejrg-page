@@ -6,7 +6,12 @@ import { api } from '@/lib/api';
 import { emailSchema } from '@/lib/validator';
 
 export function NewsletterForm() {
-  const { register, handleSubmit, reset, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm({
     resolver: zodResolver(emailSchema),
   });
 
@@ -64,14 +69,14 @@ export function NewsletterForm() {
         </button>
       </div>
       {message && (
-        <p className={`text-sm ${message.includes('exitosa') ? 'text-green-600' : 'text-red-600'}`}>
+        <p
+          className={`text-sm ${message.includes('exitosa') ? 'text-green-600' : 'text-red-600'}`}
+        >
           {message}
         </p>
       )}
       {errors.email && (
-        <p className="text-sm text-red-600 mt-1">
-          {errors.email.message}
-        </p>
+        <p className="text-sm text-red-600 mt-1">{errors.email.message}</p>
       )}
     </div>
   );

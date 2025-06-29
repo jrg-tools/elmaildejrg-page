@@ -1,4 +1,8 @@
-import { clerkClient, clerkMiddleware, createRouteMatcher } from '@clerk/astro/server';
+import {
+  clerkClient,
+  clerkMiddleware,
+  createRouteMatcher,
+} from '@clerk/astro/server';
 
 const isProtectedRoute = createRouteMatcher(['/edit(.*)']);
 

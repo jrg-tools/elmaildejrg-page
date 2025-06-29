@@ -23,7 +23,9 @@ export function Editor({
   const { getToken } = useAuth();
   const [isSaving, setIsSaving] = useState(false);
   const [isPublishing, setIsPublishing] = useState(false);
-  const [slugValidationError, setSlugValidationError] = useState<string | null>(null);
+  const [slugValidationError, setSlugValidationError] = useState<string | null>(
+    null,
+  );
   const [isValidatingSlug, setIsValidatingSlug] = useState(false);
 
   const {
@@ -50,7 +52,9 @@ export function Editor({
       editorInstance.current.destroy();
     }
 
-    editorInstance.current = new EditorJS(editorConfig(editRef, getToken, blocks, id));
+    editorInstance.current = new EditorJS(
+      editorConfig(editRef, getToken, blocks, id),
+    );
 
     return () => {
       editorInstance.current?.destroy();
@@ -68,7 +72,11 @@ export function Editor({
 
     try {
       const token = await getToken({ skipCache: true });
-      const { isValid } = await api.post('/admin/validate-slug', { slug, id }, { token });
+      const { isValid } = await api.post(
+        '/admin/validate-slug',
+        { slug, id },
+        { token },
+      );
       if (isValid) {
         clearErrors('slug');
         return;
@@ -76,7 +84,8 @@ export function Editor({
       setSlugValidationError('Slug is already in use');
     }
     catch (error) {
-      const errorMessage = error instanceof Error ? error.message : 'Slug is already in use';
+      const errorMessage
+        = error instanceof Error ? error.message : 'Slug is already in use';
       setSlugValidationError(errorMessage);
       setError('slug', { message: errorMessage });
     }
@@ -92,7 +101,12 @@ export function Editor({
   };
 
   const saveContent = async (isPublished: boolean = false) => {
-    if (!editorInstance.current || !slugValue || !isValid || slugValidationError) {
+    if (
+      !editorInstance.current
+      || !slugValue
+      || !isValid
+      || slugValidationError
+    ) {
       return;
     }
 
@@ -105,13 +119,17 @@ export function Editor({
       const htmlContent = edjsParser.parse(editorData);
 
       const token = await getToken({ skipCache: true });
-      const response = await api.post('/admin/newsletter', {
-        slug: slugValue,
-        content: htmlContent,
-        blocks: editorData,
-        isPublished,
-        id,
-      }, { token });
+      const response = await api.post(
+        '/admin/newsletter',
+        {
+          slug: slugValue,
+          content: htmlContent,
+          blocks: editorData,
+          isPublished,
+          id,
+        },
+        { token },
+      );
 
       // If successfully saved and not already in edit mode, redirect
       if (response && (!slug || response.slug !== slug)) {
@@ -131,7 +149,8 @@ export function Editor({
   const handlePublish = () => saveContent(true);
 
   const isSlugInvalid = !!errors.slug || !!slugValidationError;
-  const canSaveOrPublish = isValid && !isSlugInvalid && !isValidatingSlug && slugValue;
+  const canSaveOrPublish
+    = isValid && !isSlugInvalid && !isValidatingSlug && slugValue;
 
   return (
     <section className="mt-12">

@@ -63,20 +63,33 @@ async function apiFetch<T = any>(
 }
 
 export const api = {
-  get: <T = any>(endpoint: string, options: Omit<ApiFetchOptions, 'method'> = {}) =>
-    apiFetch<T>(endpoint, { ...options, method: 'GET' }),
+  get: <T = any>(
+    endpoint: string,
+    options: Omit<ApiFetchOptions, 'method'> = {},
+  ) => apiFetch<T>(endpoint, { ...options, method: 'GET' }),
 
-  post: <T = any>(endpoint: string, body?: any, options: Omit<ApiFetchOptions, 'method' | 'body'> = {}) =>
-    apiFetch<T>(endpoint, { ...options, method: 'POST', body }),
+  post: <T = any>(
+    endpoint: string,
+    body?: any,
+    options: Omit<ApiFetchOptions, 'method' | 'body'> = {},
+  ) => apiFetch<T>(endpoint, { ...options, method: 'POST', body }),
 
-  put: <T = any>(endpoint: string, body?: any, options: Omit<ApiFetchOptions, 'method' | 'body'> = {}) =>
-    apiFetch<T>(endpoint, { ...options, method: 'PUT', body }),
+  put: <T = any>(
+    endpoint: string,
+    body?: any,
+    options: Omit<ApiFetchOptions, 'method' | 'body'> = {},
+  ) => apiFetch<T>(endpoint, { ...options, method: 'PUT', body }),
 
-  patch: <T = any>(endpoint: string, body?: any, options: Omit<ApiFetchOptions, 'method' | 'body'> = {}) =>
-    apiFetch<T>(endpoint, { ...options, method: 'PATCH', body }),
+  patch: <T = any>(
+    endpoint: string,
+    body?: any,
+    options: Omit<ApiFetchOptions, 'method' | 'body'> = {},
+  ) => apiFetch<T>(endpoint, { ...options, method: 'PATCH', body }),
 
-  delete: <T = any>(endpoint: string, options: Omit<ApiFetchOptions, 'method'> = {}) =>
-    apiFetch<T>(endpoint, { ...options, method: 'DELETE' }),
+  delete: <T = any>(
+    endpoint: string,
+    options: Omit<ApiFetchOptions, 'method'> = {},
+  ) => apiFetch<T>(endpoint, { ...options, method: 'DELETE' }),
 
   uploadFile: <T = any>(
     endpoint: string,

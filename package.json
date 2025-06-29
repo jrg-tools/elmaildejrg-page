@@ -6,6 +6,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "lint": "prettier --write \"src/**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint --fix \"src/**/*.{js,ts,jsx,tsx,astro}\"",
+    "lint:check": "prettier --check \"**/*.{js,jsx,ts,tsx,md,mdx,astro}\" && eslint \"src/**/*.{js,ts,jsx,tsx,astro}\"",
     "astro": "astro"
   },
   "dependencies": {

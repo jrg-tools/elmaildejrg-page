@@ -1,11 +1,11 @@
 ---
-export const prerender = false;
-
 import Layout from '@/layouts/Layout.astro';
 import { api } from '@/lib/api';
 import type { Newsletter } from '@/lib/types';
 import { SignedIn } from '@clerk/astro/components';
 import type { ApiFetchOptions } from '@/lib/api';
+
+export const prerender = false;
 
 // Get current page from URL params
 const url = new URL(Astro.request.url);
@@ -22,22 +22,21 @@ let config: ApiFetchOptions = {
   },
 };
 
-const {isAuthenticated, getToken}= Astro.locals.auth();
+const { isAuthenticated, getToken } = Astro.locals.auth();
 
 if (isAuthenticated) {
-    const token = await getToken();
-    if (token) {
-      config = {
-        ...config,
-        token: token,
-      };
-    }
+  const token = await getToken();
+  if (token) {
+    config = {
+      ...config,
+      token: token,
+    };
+  }
 }
 
 try {
   const res = await api.get('/newsletter', config);
-    console.log(res)
-list = res.list;
+  list = res.list;
   totalCount = res.total;
   totalPages = Math.ceil(totalCount / pageSize);
 } catch {
@@ -184,72 +183,69 @@ const getVisiblePages = () => {
       }
     </div>
 
-    <!-- Pagination -->
-    {totalPages > 1 && (
-      <div class="flex items-center justify-center space-x-2 mt-12">
-        <!-- Previous Button -->
-        {currentPage > 1 && (
-          <a
-            href={generatePageUrl(currentPage - 1)}
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
-          >
-            <svg
-              class="w-4 h-4 mr-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M15 19l-7-7 7-7"
-              />
-            </svg>
-            Anterior
-          </a>
-        )}
-
-        <!-- Page Numbers -->
-        <div class="flex items-center space-x-1">
-          {getVisiblePages().map((page) => (
+    {
+      totalPages > 1 && (
+        <div class="flex items-center justify-center space-x-2 mt-12">
+          {currentPage > 1 && (
             <a
-              href={generatePageUrl(page)}
-              class={`inline-flex items-center justify-center w-10 h-10 text-sm font-medium rounded-md transition-colors duration-200 no-underline hover:no-underline ${
-                page === currentPage
-                  ? 'bg-yellow-500 text-white hover:bg-yellow-600'
-                  : 'text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
-              }`}
+              href={generatePageUrl(currentPage - 1)}
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
             >
-              {page}
+              <svg
+                class="w-4 h-4 mr-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+              Anterior
             </a>
-          ))}
-        </div>
+          )}
 
-        <!-- Next Button -->
-        {currentPage < totalPages && (
-          <a
-            href={generatePageUrl(currentPage + 1)}
-            class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
-          >
-            Siguiente
-            <svg
-              class="w-4 h-4 ml-1"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
+          <div class="flex items-center space-x-1">
+            {getVisiblePages().map((page) => (
+              <a
+                href={generatePageUrl(page)}
+                class={`inline-flex items-center justify-center w-10 h-10 text-sm font-medium rounded-md transition-colors duration-200 no-underline hover:no-underline ${
+                  page === currentPage
+                    ? 'bg-yellow-500 text-white hover:bg-yellow-600'
+                    : 'text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                }`}
+              >
+                {page}
+              </a>
+            ))}
+          </div>
+
+          {currentPage < totalPages && (
+            <a
+              href={generatePageUrl(currentPage + 1)}
+              class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
             >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M9 5l7 7-7 7"
-              />
-            </svg>
-          </a>
-        )}
-      </div>
-    )}
-
+              Siguiente
+              <svg
+                class="w-4 h-4 ml-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </a>
+          )}
+        </div>
+      )
+    }
   </main>
 </Layout>

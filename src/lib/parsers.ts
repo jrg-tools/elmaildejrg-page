@@ -1,5 +1,8 @@
 function listParser({ data }: any): string {
-  const recursor = (items: any[], style: 'unordered' | 'ordered' | 'checklist'): string => {
+  const recursor = (
+    items: any[],
+    style: 'unordered' | 'ordered' | 'checklist',
+  ): string => {
     const tag = style === 'ordered' ? 'ol' : 'ul';
 
     const listItems = items.map((item) => {
@@ -25,11 +28,12 @@ function listParser({ data }: any): string {
     return `<${tag}>${listItems.join('')}</${tag}>`;
   };
 
-  const style = data.style === 'checklist'
-    ? 'checklist'
-    : data.style === 'ordered'
-      ? 'ordered'
-      : 'unordered';
+  const style
+    = data.style === 'checklist'
+      ? 'checklist'
+      : data.style === 'ordered'
+        ? 'ordered'
+        : 'unordered';
 
   return recursor(data.items, style);
 }
@@ -70,11 +74,13 @@ export const parsers = {
   },
 
   table: ({ data }: any) => {
-    const rows = data.content.map((row: string[], rowIndex: number) => {
-      const tag = data.withHeadings && rowIndex === 0 ? 'th' : 'td';
-      const cells = row.map(cell => `<${tag}>${cell}</${tag}>`).join('');
-      return `<tr>${cells}</tr>`;
-    }).join('');
+    const rows = data.content
+      .map((row: string[], rowIndex: number) => {
+        const tag = data.withHeadings && rowIndex === 0 ? 'th' : 'td';
+        const cells = row.map(cell => `<${tag}>${cell}</${tag}>`).join('');
+        return `<tr>${cells}</tr>`;
+      })
+      .join('');
     return `<table><tbody>${rows}</tbody></table>`;
   },
 

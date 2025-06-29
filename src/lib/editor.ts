@@ -60,7 +60,7 @@ export function editorConfig(
         config: {
           uploader: {
             uploadByFile: async (file: File) => {
-              const token = await getToken({ skipCache: true }) || undefined;
+              const token = (await getToken({ skipCache: true })) || undefined;
 
               const formData = new FormData();
               formData.append('file', file);
@@ -68,7 +68,11 @@ export function editorConfig(
                 formData.append('folder', id);
               }
 
-              const response = await api.uploadFile<{ url: string }>('/admin/upload-image', formData, { token });
+              const response = await api.uploadFile<{ url: string }>(
+                '/admin/upload-image',
+                formData,
+                { token },
+              );
 
               return {
                 success: 1,
