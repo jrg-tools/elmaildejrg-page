@@ -6,4 +6,5 @@ export interface Newsletter {
   isPublished: boolean;
   createdAt: string;
   updatedAt: string;
+  publishedAt?: string;
 }

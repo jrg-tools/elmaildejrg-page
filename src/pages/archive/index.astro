@@ -143,15 +143,16 @@ const getVisiblePages = () => {
                       clip-rule="evenodd"
                     />
                   </svg>
-                  <time datetime={newsletter.createdAt}>
-                    {new Date(newsletter.createdAt).toLocaleDateString(
-                      'es-ES',
-                      {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      }
-                    )}
+                  <time
+                    datetime={newsletter.publishedAt || newsletter.updatedAt}
+                  >
+                    {new Date(
+                      newsletter.publishedAt || newsletter.updatedAt
+                    ).toLocaleDateString('es-ES', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
                   </time>
                 </div>
               </a>
