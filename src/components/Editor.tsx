@@ -146,7 +146,13 @@ export function Editor({
   };
 
   const handleSave = () => saveContent(isPublished);
-  const handlePublish = () => saveContent(true);
+  const handlePublish = () => {
+    // TODO: change this to a modal confirmation
+    const confirmed = window.confirm('¿Estás seguro de que quieres publicar este newsletter?');
+    if (!confirmed)
+      return;
+    saveContent(true);
+  };
 
   const isSlugInvalid = !!errors.slug || !!slugValidationError;
   const canSaveOrPublish
