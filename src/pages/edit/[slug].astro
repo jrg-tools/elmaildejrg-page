@@ -28,7 +28,13 @@ try {
 }
 ---
 
-<Layout title={slug}>
+<Layout
+  title={slug!
+    .split('-')
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ')}
+  }
+>
   <main
     class="max-w-screen-md px-4 mb-24 object-center m-auto text-center select-none"
   >
