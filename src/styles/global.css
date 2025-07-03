@@ -159,7 +159,7 @@ html {
     @apply my-4;
   }
   .codex-editor figure img {
-    @apply max-w-full h-auto rounded;
+    @apply max-w-full h-auto rounded max-h-[700px] m-auto;
   }
   .codex-editor figure figcaption {
     @apply text-sm text-zinc-600 dark:text-zinc-400 mt-2 text-center;
