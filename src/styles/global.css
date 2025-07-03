@@ -179,7 +179,7 @@ html {
 
   /* Embeds */
   .codex-editor iframe {
-    @apply w-full h-64 rounded my-4;
+    @apply w-full aspect-video rounded my-4;
   }
 
   /* Editor Placeholder */

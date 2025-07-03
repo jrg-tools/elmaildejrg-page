@@ -1,4 +1,5 @@
 import Delimiter from '@editorjs/delimiter';
+import Embed from '@editorjs/embed';
 import Header from '@editorjs/header';
 import ImageTool from '@editorjs/image';
 import InlineCode from '@editorjs/inline-code';
@@ -26,6 +27,15 @@ export function editorConfig(
       },
       Marker: {
         class: Marker,
+      },
+      embed: {
+        class: Embed,
+        inlineToolbar: true,
+        config: {
+          services: {
+            youtube: true,
+          },
+        },
       },
       underline: Underline,
       table: {
