@@ -5,7 +5,7 @@ html {
 }
 
 @theme {
-  --font-sans: "Figtree Variable"
+  --font-sans: "Figtree Variable", 'Inter Variable';
 }
 
 @layer base {

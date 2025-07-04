@@ -26,6 +26,7 @@
     "@editorjs/table": "^2.4.5",
     "@editorjs/underline": "^1.2.1",
     "@fontsource-variable/figtree": "^5.2.8",
+    "@fontsource-variable/inter": "^5.2.6",
     "@hookform/resolvers": "^5.1.1",
     "@tailwindcss/vite": "^4.1.11",
     "astro": "^5.10.1",
