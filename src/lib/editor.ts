@@ -1,3 +1,4 @@
+import CodeTool from '@editorjs/code';
 import Delimiter from '@editorjs/delimiter';
 import Embed from '@editorjs/embed';
 import Header from '@editorjs/header';
@@ -22,6 +23,7 @@ export function editorConfig(
     placeholder: 'Escribe tus ideas ...',
     data: blocks,
     tools: {
+      code: CodeTool,
       inlineCode: {
         class: InlineCode,
       },
