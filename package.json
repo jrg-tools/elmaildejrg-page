@@ -13,7 +13,7 @@
   "dependencies": {
     "@astrojs/react": "^4.3.0",
     "@astrojs/vercel": "^8.2.0",
-    "@clerk/astro": "^2.10.2",
+    "@clerk/astro": "^2.10.13",
     "@editorjs/code": "^2.9.3",
     "@editorjs/delimiter": "^1.4.2",
     "@editorjs/editorjs": "^2.30.8",
