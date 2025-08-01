@@ -34,7 +34,7 @@
     "canvas-confetti": "^1.9.3",
     "editorjs-color-picker": "^1.0.8",
     "editorjs-html": "^4.0.5",
-    "react": "^19.1.0",
+    "react": "^19.1.1",
     "react-dom": "^19.1.0",
     "react-hook-form": "^7.58.1",
     "tailwindcss": "^4.1.11",
@@ -43,7 +43,7 @@
   "devDependencies": {
     "@antfu/eslint-config": "^4.16.1",
     "@types/canvas-confetti": "^1.9.0",
-    "@types/react": "^19.1.8",
+    "@types/react": "^19.1.9",
     "@types/react-dom": "^19.1.6",
     "eslint": "^9.30.0",
     "eslint-config-prettier": "^10.1.5",
