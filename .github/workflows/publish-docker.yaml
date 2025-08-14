@@ -59,8 +59,12 @@ jobs:
             PUBLIC_API_URL=${{ secrets.PUBLIC_API_URL }}
 
       - name: Trigger Dokploy Deployment
-        uses: benbristow/dokploy-deploy-action@0.0.1
-        with:
-          auth_token: ${{ secrets.DOKPLOY_TOKEN }}
-          application_id: ${{ secrets.DOKPLOY_APPLICATION_ID }}
-          dokploy_url: "https://dokploy.jrg.tools"
+        run: |
+            curl -X 'POST' \
+            'https://dokploy.jrg.tools/api/application.deploy' \
+            -H 'accept: application/json' \
+            -H 'Content-Type: application/json' \
+            -H 'x-api-key: ${{ secrets.DOKPLOY_TOKEN }}' \
+            -d '{
+              "applicationId": "${{ secrets.DOKPLOY_APPLICATION_ID }}"
+            }'
