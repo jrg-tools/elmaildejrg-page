@@ -1,9 +1,8 @@
 /// <reference types="astro/client" />
+/// <reference types="astro-clerk-auth/env" />
 
 interface ImportMetaEnv {
-  readonly API_URL: string;
-  readonly PUBLIC_CLERK_PUBLISHABLE_KEY: string;
-  readonly CLERK_SECRET_KEY: string;
+  readonly PUBLIC_API_URL: string;
 }
 
 interface ImportMeta {

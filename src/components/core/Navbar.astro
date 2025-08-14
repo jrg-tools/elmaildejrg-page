@@ -8,30 +8,30 @@ interface Props {
 const { title = TITLE } = Astro.props;
 ---
 
-<header id="header-nav" class="fixed top-0 w-full px-6 py-4 z-50 select-none">
-  <div class="max-w-7xl mx-auto flex items-center justify-between gap-16">
-    <a href="/" class="relative z-10 flex items-center gap-2 flex-row">
+<header id="header-nav" class="fixed top-0 z-50 w-full px-6 py-4 select-none">
+  <div class="mx-auto flex max-w-7xl items-center justify-between gap-16">
+    <a href="/" class="relative z-10 flex flex-row items-center gap-2">
       <img src="/logo.webp" loading="lazy" class="w-9" alt="Logo" />
       <h2 class="text-xl font-bold whitespace-nowrap">
         {title}
       </h2>
     </a>
 
-    <nav class="items-center flex gap-4">
+    <nav class="flex items-center gap-4">
       {
         SITE_MAP.filter((item) => item.inNav).map((item) => {
           const isActive = Astro.url.pathname === item.url;
           return (
             <a
               href={item.url}
-              class={`hover:opacity-100 transition-opacity duration-300 cursor-pointer font-semibold ${isActive ? 'underline underline-offset-4 decoration-2' : ''}`}
+              class={`cursor-pointer font-semibold transition-opacity duration-300 hover:opacity-100 ${isActive ? 'underline decoration-2 underline-offset-4' : ''}`}
             >
               {item.name}
             </a>
           );
         })
       }
-      <SignedIn>
+      <SignedIn isStatic={true}>
         <UserButton />
       </SignedIn>
     </nav>

@@ -5,9 +5,9 @@ import { NewsletterForm } from '@/components/Form';
 const this_year = new Date().getFullYear();
 ---
 
-<footer class="bg-zinc-100/20 dark:bg-zinc-900/30 select-none">
+<footer class="bg-zinc-100/20 select-none dark:bg-zinc-900/30">
   <div class="mx-auto w-full max-w-screen-xl p-4 px-6 py-6 lg:py-8">
-    <div class="flex flex-row flex-wrap gap-16 sm:gap-8 justify-center">
+    <div class="flex flex-row flex-wrap justify-center gap-16 sm:gap-8">
       {
         SOCIALS.length > 0 && (
           <div>
@@ -17,7 +17,7 @@ const this_year = new Date().getFullYear();
                 <li>
                   <a
                     href={item.url}
-                    class="hover:underline duration-300"
+                    class="duration-300 hover:underline"
                     target={item.target}
                   >
                     {item.name}
@@ -39,7 +39,7 @@ const this_year = new Date().getFullYear();
                 <a
                   href={item.url}
                   target={item.target}
-                  class="hover:underline duration-300"
+                  class="duration-300 hover:underline"
                 >
                   {item.name}
                 </a>
@@ -50,7 +50,7 @@ const this_year = new Date().getFullYear();
           {
             Astro.props.isAdmin && (
               <li>
-                <a href="/admin" class="hover:underline duration-300">
+                <a href="/admin" class="duration-300 hover:underline">
                   Admin
                 </a>
               </li>
@@ -58,16 +58,16 @@ const this_year = new Date().getFullYear();
           }
         </ul>
       </div>
-      <div class="flex-1 max-w-md text-center sm:text-left">
+      <div class="max-w-md flex-1 text-center sm:text-left">
         <h2 class="mb-6 text-sm font-semibold uppercase">Registrate</h2>
-        <NewsletterForm client:only />
+        <NewsletterForm client:load />
       </div>
     </div>
     <hr
-      class="my-6 border-zinc-200/60 dark:border-zinc-800/60 sm:mx-auto lg:my-8"
+      class="my-6 border-zinc-200/60 sm:mx-auto lg:my-8 dark:border-zinc-800/60"
     />
     <div class="sm:flex sm:items-center sm:justify-between">
-      <span class="text-sm text-zinc-300 dark:text-zinc-700 sm:text-center">
+      <span class="text-sm text-zinc-300 sm:text-center dark:text-zinc-700">
         &copy;
         {' '}
         {AUTHOR}

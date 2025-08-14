@@ -1,0 +1,15 @@
+services:
+  elmaildejrg-page:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=${API_URL}
+      - PUBLIC_CLERK_PUBLISHABLE_KEY=${PUBLIC_CLERK_PUBLISHABLE_KEY}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+    restart: unless-stopped
+
+volumes:
+  sqlite_data:

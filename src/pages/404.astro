@@ -1,12 +1,14 @@
 ---
 import Layout from '@/layouts/Layout.astro';
+
+export const prerender = true;
 ---
 
 <Layout>
   <main
-    class="min-h-screen flex items-center justify-center text-center px-4 select-none"
+    class="flex min-h-screen items-center justify-center px-4 text-center select-none"
   >
-    <h1 class="text-4xl font-bold mb-4">
+    <h1 class="mb-4 text-4xl font-bold">
       404 - No hemos encontrado lo que buscas
     </h1>
   </main>

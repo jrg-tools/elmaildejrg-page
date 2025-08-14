@@ -35,7 +35,7 @@ try {
     .join(' ')}
   }
 >
-  <main class="max-w-screen-md px-4 mb-24 object-center m-auto text-center">
+  <main class="m-auto mb-24 max-w-screen-md object-center px-4 text-center">
     <Editor
       id={id}
       content={content}
@@ -44,7 +44,7 @@ try {
       updatedAt={updatedAt}
       createdAt={createdAt}
       slug={slug}
-      client:only
+      client:load
     />
   </main>
 </Layout>

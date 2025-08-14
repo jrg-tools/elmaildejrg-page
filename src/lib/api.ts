@@ -1,4 +1,4 @@
-import { API_URL } from '@/lib/env';
+import { PUBLIC_API_URL } from 'astro:env/client';
 
 export interface ApiFetchOptions extends Omit<RequestInit, 'method' | 'body'> {
   token?: string;
@@ -13,7 +13,7 @@ async function apiFetch<T = any>(
 ): Promise<T> {
   const { token, params, body, isFormData, ...fetchOptions } = options;
 
-  const url = new URL(endpoint, API_URL);
+  const url = new URL(endpoint, PUBLIC_API_URL);
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {

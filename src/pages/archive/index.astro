@@ -71,13 +71,13 @@ const getVisiblePages = () => {
 
 <Layout>
   <main
-    class="max-w-screen-md px-4 mb-24 object-center m-auto text-left codex-editor pt-4 md:pt-8"
+    class="codex-editor m-auto mb-24 max-w-screen-md object-center px-4 pt-4 text-left md:pt-8"
   >
     <div
-      class="mt-8 flex items-center justify-center space-x-4 text-sm text-zinc-500 dark:text-zinc-400 mb-12"
+      class="mt-8 mb-12 flex items-center justify-center space-x-4 text-sm text-zinc-500 dark:text-zinc-400"
     >
       <span class="flex items-center">
-        <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
+        <svg class="mr-2 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
           <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
         </svg>
         {totalCount} newsletters
@@ -85,17 +85,17 @@ const getVisiblePages = () => {
     </div>
 
     <!-- Newsletter Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-2">
       <SignedIn>
         <a
           href="/edit"
-          class="bg-zinc-100/50 dark:bg-zinc-900/50 p-4 rounded-md flex items-center justify-center hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200"
+          class="flex items-center justify-center rounded-md bg-zinc-100/50 p-4 transition-colors duration-200 hover:bg-zinc-200/50 dark:bg-zinc-900/50 dark:hover:bg-zinc-800"
         >
           <span
-            class="flex items-center gap-2 text-zinc-700 dark:text-zinc-200 font-medium"
+            class="flex items-center gap-2 font-medium text-zinc-700 dark:text-zinc-200"
           >
             <svg
-              class="w-6 h-6"
+              class="h-6 w-6"
               fill="none"
               stroke="currentColor"
               stroke-width="2"
@@ -112,9 +112,9 @@ const getVisiblePages = () => {
 
       {
         list.map((newsletter) => (
-          <article class="relative bg-zinc-100/50 dark:bg-zinc-900/50 p-4 rounded-md">
+          <article class="relative rounded-md bg-zinc-100/50 p-4 dark:bg-zinc-900/50">
             {!newsletter.isPublished && (
-              <span class="absolute top-0 left-0 flex size-3 z-10">
+              <span class="absolute top-0 left-0 z-10 flex size-3">
                 <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-yellow-400 opacity-75" />
                 <span class="relative inline-flex size-3 rounded-full bg-yellow-500" />
               </span>
@@ -123,17 +123,17 @@ const getVisiblePages = () => {
             <div class="flex items-start justify-between gap-4">
               <a
                 href={`/archive/${newsletter.slug}`}
-                class="hover:text-yellow-600 no-underline hover:no-underline flex-1 group gap-2 flex flex-col"
+                class="group flex flex-1 flex-col gap-2 no-underline hover:text-yellow-600 hover:no-underline"
               >
-                <h2 class="text-xl font-bold text-slate-900 dark:text-white group-hover:text-yellow-600 dark:group-hover:text-yellow-400 transition-colors duration-300 line-clamp-2 relative">
+                <h2 class="relative line-clamp-2 text-xl font-bold text-slate-900 transition-colors duration-300 group-hover:text-yellow-600 dark:text-white dark:group-hover:text-yellow-400">
                   {newsletter.slug
                     .split('-')
                     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
                     .join(' ')}
                 </h2>
-                <div class="flex items-center text-sm text-zinc-500 dark:text-zinc-400 mb-4">
+                <div class="mb-4 flex items-center text-sm text-zinc-500 dark:text-zinc-400">
                   <svg
-                    class="w-4 h-4 mr-2"
+                    class="mr-2 h-4 w-4"
                     fill="currentColor"
                     viewBox="0 0 20 20"
                   >
@@ -160,10 +160,10 @@ const getVisiblePages = () => {
               <SignedIn>
                 <a
                   href={`/edit/${newsletter.slug}`}
-                  class="inline-flex items-center px-3 py-1.5 text-xs font-medium text-zinc-600 dark:text-zinc-400 bg-white dark:bg-zinc-950 rounded-lg hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline flex-shrink-0"
+                  class="inline-flex flex-shrink-0 items-center rounded-lg bg-white px-3 py-1.5 text-xs font-medium text-zinc-600 no-underline transition-colors duration-200 hover:bg-zinc-200/50 hover:no-underline dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-800"
                 >
                   <svg
-                    class="w-3 h-3 mr-1"
+                    class="mr-1 h-3 w-3"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -186,14 +186,14 @@ const getVisiblePages = () => {
 
     {
       totalPages > 1 && (
-        <div class="flex items-center justify-center space-x-2 mt-12">
+        <div class="mt-12 flex items-center justify-center space-x-2">
           {currentPage > 1 && (
             <a
               href={generatePageUrl(currentPage - 1)}
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
+              class="inline-flex items-center rounded-md bg-zinc-100/50 px-3 py-2 text-sm font-medium text-zinc-600 no-underline transition-colors duration-200 hover:bg-zinc-200/50 hover:no-underline dark:bg-zinc-900/50 dark:text-zinc-400 dark:hover:bg-zinc-800"
             >
               <svg
-                class="w-4 h-4 mr-1"
+                class="mr-1 h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -213,10 +213,10 @@ const getVisiblePages = () => {
             {getVisiblePages().map((page) => (
               <a
                 href={generatePageUrl(page)}
-                class={`inline-flex items-center justify-center w-10 h-10 text-sm font-medium rounded-md transition-colors duration-200 no-underline hover:no-underline ${
+                class={`inline-flex h-10 w-10 items-center justify-center rounded-md text-sm font-medium no-underline transition-colors duration-200 hover:no-underline ${
                   page === currentPage
                     ? 'bg-yellow-500 text-white hover:bg-yellow-600'
-                    : 'text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 hover:bg-zinc-200/50 dark:hover:bg-zinc-800'
+                    : 'bg-zinc-100/50 text-zinc-600 hover:bg-zinc-200/50 dark:bg-zinc-900/50 dark:text-zinc-400 dark:hover:bg-zinc-800'
                 }`}
               >
                 {page}
@@ -227,11 +227,11 @@ const getVisiblePages = () => {
           {currentPage < totalPages && (
             <a
               href={generatePageUrl(currentPage + 1)}
-              class="inline-flex items-center px-3 py-2 text-sm font-medium text-zinc-600 dark:text-zinc-400 bg-zinc-100/50 dark:bg-zinc-900/50 rounded-md hover:bg-zinc-200/50 dark:hover:bg-zinc-800 transition-colors duration-200 no-underline hover:no-underline"
+              class="inline-flex items-center rounded-md bg-zinc-100/50 px-3 py-2 text-sm font-medium text-zinc-600 no-underline transition-colors duration-200 hover:bg-zinc-200/50 hover:no-underline dark:bg-zinc-900/50 dark:text-zinc-400 dark:hover:bg-zinc-800"
             >
               Siguiente
               <svg
-                class="w-4 h-4 ml-1"
+                class="ml-1 h-4 w-4"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"

@@ -31,5 +31,18 @@ There is a component in `src/components/core/Posthog.astro` that initializes Pos
 
 ## 🚀 Deployment
 
-We have a CI/CD pipeline set up with Vercel.
-The deployment is triggered automatically on **pushes to the main branch**.
+Automatic deployments on dokploy.
+
+```yaml
+# docker-compose.yml
+services:
+  elmaildejrg-page:
+    image: ghcr.io/jrg-tools/elmaildejrg-page:latest
+    ports:
+      - "80:80"
+    environment:
+      - API_URL=${API_URL}
+      - PUBLIC_CLERK_PUBLISHABLE_KEY=${PUBLIC_CLERK_PUBLISHABLE_KEY}
+      - CLERK_SECRET_KEY=${CLERK_SECRET_KEY}
+    restart: unless-stopped
+```
