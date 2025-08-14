@@ -1,3 +1,4 @@
+'use client';
 import type { Newsletter } from '@/lib/types';
 import { useAuth } from '@clerk/astro/react';
 import EditorJS from '@editorjs/editorjs';

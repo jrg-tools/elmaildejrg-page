@@ -1,3 +1,4 @@
+'use client';
 import { zodResolver } from '@hookform/resolvers/zod';
 import confetti from 'canvas-confetti';
 import { useRef, useState } from 'react';
