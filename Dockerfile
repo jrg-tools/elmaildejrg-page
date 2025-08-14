@@ -1,7 +1,9 @@
 # Base image with Bun
 FROM oven/bun:alpine AS base
 WORKDIR /app
-COPY package.json bun.lockb ./
+COPY package.json ./
+# Copy lockfile if it exists
+COPY bun.lock* ./
 
 # Install only production dependencies
 FROM base AS prod-deps
