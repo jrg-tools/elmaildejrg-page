@@ -14,6 +14,8 @@ async function apiFetch<T = any>(
   const { token, params, body, isFormData, ...fetchOptions } = options;
 
   const url = new URL(endpoint, PUBLIC_API_URL);
+  console.log('API URL:', url.toString());
+  console.log('API Params:', params);
   if (params) {
     Object.entries(params).forEach(([key, value]) => {
       if (value !== undefined && value !== null) {
