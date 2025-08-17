@@ -13,11 +13,9 @@ let { content }: Partial<Newsletter> = {};
 
 try {
   const res: Newsletter = await api.get(`/newsletter/${slug}`);
-  console.error('Res:', res);
 
   content = res.content;
 } catch (error) {
-  console.error('Error fetching newsletter:', error);
   return new Response(null, { status: 404 });
 }
 ---
