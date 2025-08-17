@@ -5,6 +5,7 @@ import { api } from '@/lib/api';
 import type { Newsletter } from '@/lib/types';
 
 const { slug } = Astro.params;
+const { getToken } = Astro.locals.auth();
 let {
   id,
   content,
@@ -15,7 +16,8 @@ let {
 }: Partial<Newsletter> = {};
 
 try {
-  const res: Newsletter = await api.get(`/newsletter/${slug}`);
+  const token = await getToken();
+  const res: Newsletter = await api.get(`/newsletter/${slug}`, { token });
 
   id = res.id;
   content = res.content;

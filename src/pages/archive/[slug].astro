@@ -5,6 +5,7 @@ import { api } from '@/lib/api';
 import type { Newsletter } from '@/lib/types';
 
 const { slug } = Astro.params;
+const { getToken } = Astro.locals.auth();
 if (!slug) {
   return new Response(null, { status: 404 });
 }
@@ -12,7 +13,8 @@ if (!slug) {
 let { content }: Partial<Newsletter> = {};
 
 try {
-  const res: Newsletter = await api.get(`/newsletter/${slug}`);
+  const token = await getToken();
+  const res: Newsletter = await api.get(`/newsletter/${slug}`, { token });
 
   content = res.content;
 } catch (error) {
