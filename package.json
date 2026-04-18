@@ -30,7 +30,7 @@
     "@fontsource-variable/inter": "^5.2.8",
     "@hookform/resolvers": "^5.2.2",
     "@tailwindcss/vite": "^4.1.17",
-    "astro": "^5.16.4",
+    "astro": "^6.1.8",
     "canvas-confetti": "^1.9.4",
     "editorjs-color-picker": "^1.0.8",
     "editorjs-html": "^4.0.5",
